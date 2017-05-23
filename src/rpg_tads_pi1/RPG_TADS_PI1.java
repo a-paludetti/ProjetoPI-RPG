@@ -16,9 +16,9 @@ public class RPG_TADS_PI1 {
 
     static Scanner entrada = new Scanner(System.in);
 
-    public static String quarto1() {
-        String escolha1, escolha2, escolha3, escolha4 = "";
-        int i = 0;
+    public static int quarto1() {
+        String escolha1, escolha2, escolha3;
+        int i = 0, escolha4 = 0;
 
         System.out.println("Você acorda em um quarto escuro, uma lâmpada fraca e amarela iluminando o lugar que você deita."
                 + "\n> 1 - olhar em volta;"
@@ -45,12 +45,12 @@ public class RPG_TADS_PI1 {
                 if (escolha3.contains("2")) {
                     System.out.println("Você pega o papel e a caneta, embaixo tem uma chave, provavelmente da porta."
                             + "\n> 1 - tentar a porta");
-                    escolha4 = entrada.nextLine();
+                    escolha4 = entrada.nextInt();
                 }
             } else {
                 System.out.println("Você pega o papel e a caneta, embaixo tem uma chave, provavelmente da porta."
                         + "\n> 1 - tentar a porta");
-                escolha4 = entrada.nextLine();
+                escolha4 = entrada.nextInt();
             }
         } else {
             System.out.println("Você ouve um barulho atras da porta a sua direita, como de algo quisesse entrar."
@@ -91,16 +91,28 @@ public class RPG_TADS_PI1 {
                 if (escolha3.contains("2")) {
                     System.out.println("Você pega o papel e a caneta, embaixo tem uma chave, provavelmente da porta."
                             + "\n> 1 - tentar a porta");
-                    escolha4 = entrada.nextLine();
+                    escolha4 = entrada.nextInt();
+
                 }
             }
         }
+        System.out.println("Você abre a porta com uma certa dificuldade,"
+                + " a chave quebra quando você tenta tirá-la da maçaneta.");
         return escolha4;
+
     }
 
     public static int quarto2(String N) {
         int quarto = 0;
-        switch (N) {
+        System.out.println("Na sua frente se extende um corredor escuro,"
+                + " você consegue ver 3 portas a sua esquerda,"
+                + " uma claramente destruída, as outras duas intáctas; ao final uma escada,"
+                + " você consegue notar um vulto estranho aguardando em frente."
+                + " \n> 1 - tentar a primeira porta."
+                + " \n> 2 - tentar a segunda porta."
+                + "\n> 3 - ir em direção a escada.");
+        String escolha = entrada.nextLine();
+        switch (escolha) {
             case "1":
                 quarto = 1;
                 break;
@@ -121,7 +133,8 @@ public class RPG_TADS_PI1 {
         int escolha2 = 0, escolha3 = 0;
 
         if (N == 1) {
-            System.out.println("A porta está trancada,  você consegue ver uma luz - branca? azul? - pela fresta."
+            System.out.println("A porta está trancada,  você consegue ver uma luz - "
+                    + "talvez branca? ou azul? - pela fresta."
                     + "\n> 1 - Olhar pelo buraco da chave."
                     + "\n> 2 - Tentar a segunda porta.");
             escolha1 = entrada.nextLine();
@@ -138,17 +151,13 @@ public class RPG_TADS_PI1 {
                     }
                     break;
                 case "2":
-                    
+
             }
         }
-        System.out.println(
-                "Na sua frente se extende um corredor escuro, você consegue ver 3 portas a sua esquerda,"
-                + " uma claramente destruídas, as outras não, ao final uma escada, você consegue notar um vulto estranho aguardando no final."
-                + "\n> 1 - tentar a primeira porta."
-                + "\n> 2 - tentar a segunda porta."
-                + "\n> 3 - ir em direção a escada.");
-        escolha1 = entrada.nextLine();
+        return escolha3;
+    }
 
+    public static int quarto4(int N) {
         switch (escolha1) {
 
             case "2":
@@ -161,9 +170,13 @@ public class RPG_TADS_PI1 {
 
     public static void main(String[] args) {
         // TODO code application logic here
-        String N = quarto1();
-        System.out.println("Você abre a porta com uma certa dificuldade, a chave quebra quando você tenta tirá-la da maçaneta.");
-        quarto2(N);
+        String N;
+        int N1;
+        
+        N = quarto1();
+        N1 = quarto2(N);
+        quarto3(N1);
+        
     }
 
 }
