@@ -6,7 +6,6 @@
 package rpg_tads_pi1;
 
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,53 +15,60 @@ public class RPG_TADS_PI1 {
 
     static Scanner entrada = new Scanner(System.in);
 
-    public static int quarto1() {
-        String escolha1, escolha2, escolha3;
-        int i = 0, escolha4 = 0;
+    public static String quarto1() {
+        String escolha1, escolha2, escolha3, escolha4 = "";
+        int i = 0;
 
         System.out.println("Você acorda em um quarto escuro, uma lâmpada fraca e amarela iluminando o lugar que você deita."
                 + "\n> 1 - olhar em volta;"
                 + "\n> 2 - continuar deitado;");
         escolha1 = entrada.nextLine();
-
+        System.out.println("");
         if (escolha1.contains("1")) {
             System.out.println("Na sua frente tem uma mesa, apenas papel e caneta por cima. Na sua direita uma porta."
                     + "\n> 1 - tentar a porta"
                     + "\n> 2 - pegar papel e caneta.");
             escolha2 = entrada.nextLine();
+            System.out.println("");
             if (escolha2.contains("1")) {
                 System.out.println("A porta está trancada."
                         + "\n> 1 - tentar a porta novamente."
                         + "\n> 2 - pegar papel e caneta.");
                 escolha3 = entrada.nextLine();
+                System.out.println("");
                 while (escolha3.contains("1")) {
                     System.out.println("A porta está trancada."
                             + "\n> 1 - tentar a porta novamente."
                             + "\n> 2 - pegar papel e caneta.");
                     escolha3 = entrada.nextLine();
+                    System.out.println("");
                     i++;
                 }
                 if (escolha3.contains("2")) {
                     System.out.println("Você pega o papel e a caneta, embaixo tem uma chave, provavelmente da porta."
                             + "\n> 1 - tentar a porta");
-                    escolha4 = entrada.nextInt();
+                    escolha4 = entrada.nextLine();
+                    System.out.println("");
                 }
             } else {
                 System.out.println("Você pega o papel e a caneta, embaixo tem uma chave, provavelmente da porta."
                         + "\n> 1 - tentar a porta");
-                escolha4 = entrada.nextInt();
+                escolha4 = entrada.nextLine();
+                System.out.println("");
             }
         } else {
             System.out.println("Você ouve um barulho atras da porta a sua direita, como de algo quisesse entrar."
                     + "\n> 1 - olhar em volta"
                     + "\n> 2 - continuar deitado");
             escolha2 = entrada.nextLine();
+            System.out.println("");
             if (escolha2.contains("2")) {
                 do {
                     System.out.println("Você ouve um barulho atras da porta a sua direita, como de algo quisesse entrar."
                             + "\n> 1 - olhar em volta"
                             + "\n> 2 - continuar deitado");
                     escolha2 = entrada.nextLine();
+                    System.out.println("");
                     i++;
                 } while (i < 1);
                 System.out.println("Você ouve o barulho da porta quebrando, consegue ver apenas um vulto antes que a luz se apague."
@@ -72,52 +78,59 @@ public class RPG_TADS_PI1 {
                         + "\n> SIM (1)"
                         + "\n> NÃO (2)");
                 escolha3 = entrada.nextLine();
+                System.out.println("");
                 if (escolha3.contains("1")) {
                     quarto1();
+                    System.out.println("");
                 }
             } else {
-                System.out.println("A porta está trancada."
-                        + "\n> 1 - tentar a porta novamente."
+                System.out.println("Na sua frente tem uma mesa, apenas papel e caneta por cima. Na sua direita uma porta."
+                        + "\n> 1 - tentar a porta"
                         + "\n> 2 - pegar papel e caneta.");
                 escolha3 = entrada.nextLine();
+                System.out.println("");
                 while (escolha3.contains("1")) {
                     System.out.println("A porta está trancada."
                             + "\n> 1 - tentar a porta novamente."
                             + "\n> 2 - pegar papel e caneta.");
                     escolha3 = entrada.nextLine();
+                    System.out.println("");
                     i++;
                 }
-
                 if (escolha3.contains("2")) {
                     System.out.println("Você pega o papel e a caneta, embaixo tem uma chave, provavelmente da porta."
                             + "\n> 1 - tentar a porta");
-                    escolha4 = entrada.nextInt();
-
+                    escolha4 = entrada.nextLine();
+                    System.out.println("");
                 }
             }
         }
         System.out.println("Você abre a porta com uma certa dificuldade,"
                 + " a chave quebra quando você tenta tirá-la da maçaneta.");
+        System.out.println("");
         return escolha4;
-
     }
 
     public static int quarto2(String N) {
         int quarto = 0;
         System.out.println("Na sua frente se extende um corredor escuro,"
-                + " você consegue ver 3 portas a sua esquerda,"
-                + " uma claramente destruída, as outras duas intáctas; ao final uma escada,"
+                + " você consegue ver 3 portas a sua esquerda, uma claramente destruída."
+                + "\nAs outras duas estão intáctas; ao final uma escada,"
                 + " você consegue notar um vulto estranho aguardando em frente."
-                + " \n> 1 - tentar a primeira porta."
-                + " \n> 2 - tentar a segunda porta."
+                + "\n> 1 - tentar a primeira porta."
+                + "\n> 2 - tentar a segunda porta."
                 + "\n> 3 - ir em direção a escada.");
         String escolha = entrada.nextLine();
+
         switch (escolha) {
+
             case "1":
                 quarto = 1;
+                quarto3(quarto);
                 break;
             case "2":
                 quarto = 2;
+                quarto4(quarto);
                 break;
             case "3":
                 quarto = 3;
@@ -129,54 +142,82 @@ public class RPG_TADS_PI1 {
     }
 
     public static int quarto3(int N) {
-        String escolha1;
+        String escolha1, palavra = "";
         int escolha2 = 0, escolha3 = 0;
-
         if (N == 1) {
             System.out.println("A porta está trancada,  você consegue ver uma luz - "
                     + "talvez branca? ou azul? - pela fresta."
                     + "\n> 1 - Olhar pelo buraco da chave."
-                    + "\n> 2 - Tentar a segunda porta.");
+                    + "\n> 2 - Voltar ao corredor.");
             escolha1 = entrada.nextLine();
+            System.out.println("");
             switch (escolha1) {
                 case "1":
                     System.out.println("Você vê parte da sala, apenas um quarto branco."
                             + "\n> 1 - Tentar a segunda porta."
-                            + "\n> 2 - voltar ao corredor.");
+                            + "\n> 2 - Voltar ao corredor.");
                     escolha2 = entrada.nextInt();
+                    System.out.println("");
                     if (escolha2 == 1) {
                         escolha3 = 1;
                     } else {
-                        escolha3 = 2;
+                        escolha3 = 0;
+                        quarto2(palavra);
                     }
                     break;
                 case "2":
-
+                    quarto2(palavra);
+                    break;
+                default:
+                    System.out.println("opção inválida");
+                    break;
             }
         }
         return escolha3;
     }
 
     public static int quarto4(int N) {
-        switch (escolha1) {
-
-            case "2":
+        int escolha2, escolha = 0;
+        String palavra;
+        switch (N) {
+            case 1:
+                System.out.println("A sala está aberta, você vê ma sala ampla, porém vazia."
+                        + "\nA sua direita as janelas estão vedadas com tabuas de madeira apenas a luz fraca de fora ilumina o lugar."
+                        + "\nNa parede a esquerda algumas letras como se formassem palavras, uma lata de tinta aberta em frente."
+                        + "\n> 1 - Jogar."
+                        + "\n> 2 - Voltar ao corredor.");
+                escolha2 = entrada.nextInt();
+                System.out.println("");
+                if (escolha2 == 1) {
+                    palavra = "ARQUITETA";
+                    jogoDaForca01(palavra);
+                }
+            case 2:
                 System.out.println("A porta está aberta, você vê uma sala ampla, porém vazia,"
                         + "as janelas estão vedadas com tábuas de madeira, apenas a luz fraca de fora ilumina o lugar.");
         }
-
         return escolha;
+    }
+
+    public static int jogoDaForca01(String N) {
+        boolean venceu = false;
+        int jogo;
+        if (venceu == false) {
+            jogo = 1;
+        } else {
+            jogo = 0;
+        }
+        return jogo;
     }
 
     public static void main(String[] args) {
         // TODO code application logic here
-        String N;
-        int N1;
-        
+        int x, N1;
+        String N, N2;
         N = quarto1();
         N1 = quarto2(N);
         quarto3(N1);
-        
+
     }
 
 }
