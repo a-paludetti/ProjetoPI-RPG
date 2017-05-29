@@ -5,6 +5,7 @@
  */
 package rpg_tads_pi1;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -158,38 +159,71 @@ public class RPG_TADS_PI1 {
                 escolha2 = entrada.nextLine();
                 System.out.println("");
                 if (escolha2.contains("1")) {
-                    escolha3 = "porta2";
-                } else if (escolha2.contains("2")) {
+                    quarto4(2);
+                } else {
                     quarto2(palavra);
                 }
-
                 return escolha3;
+            } else {
+                quarto2(palavra);
             }
         }
         if (N == 2) {
+            System.out.println("");
+            System.out.println("Ao abrir a porta você se depara com um quarto vazio,"
+                    + "\n uma luz fraca illumina as paredes brancas, você não vê nenhuma porta."
+                    + "\n> 1 - Examinar o quarto."
+                    + "\n> 2 - Voltar ao corredor.");
+            escolha1 = entrada.nextLine();
+            System.out.println("");
+
             return escolha3;
         }
         return escolha3;
     }
 
     public static String quarto4(int N) {
-        int escolha2, escolha = 0;
-        String palavra = "", escolha1="";
+        int jogo, escolha = 0;
+        String palavra = "", escolha1 = "", escolha2 = "";
         boolean valido = false;
 
         if (N == 2) {
             do {
-                System.out.println("A sala está aberta, você vê uma sala ampla, porém vazia."
+                System.out.println("A porta está aberta, você vê uma sala ampla, porém vazia."
                         + "\nA sua direita as janelas estão vedadas com tabuas de madeira apenas a luz fraca de fora ilumina o lugar."
-                        + "\nNa parede a esquerda algumas letras como se formassem palavras, uma lata de tinta aberta em frente."
+                        + "\nNa parede a esquerda algumas letras como se formassem palavras, uma lata de tinta pequena e aberta em frente."
                         + "\n> 1 - Jogar."
                         + "\n> 2 - Voltar ao corredor.");
                 escolha1 = entrada.nextLine();
                 System.out.println("");
                 if (escolha1.equals("1") || escolha1.equals("2")) {
                     if (escolha1.contains("1")) {
+                        System.out.println("Na parede as letras"
+                                + "\n - - Q - - - E - T A"
+                                + "\n você começa a preencher as letras...");
+                        System.out.println("");
                         palavra = "ARQUITETA";
-                        jogoDaForca01(palavra);
+                        jogo = jogoDaForca01(palavra);
+                        if (jogo == 1) {
+                            System.out.println("Você olha a palavra na parede, você tem uma vaga recordação de uma mulher."
+                                    + "\nA lata de tinta esta quase vazia, você pega mesmo assim.");
+                            System.out.println("");
+                            quarto3(2);
+                        } else {
+                            System.out.println("Jogar de Novo?"
+                                    + "\n> 1 - SIM."
+                                    + "\n> 2 - NÃO");
+                            escolha2 = entrada.nextLine();
+                            if (escolha2.equals("1")) {
+                                palavra = "ARQUITETA";
+                                jogo = jogoDaForca01(palavra);
+                                if (jogo == 1) {
+                                    quarto3(2);
+                                }
+                            } else {
+                                quarto2(palavra);
+                            }
+                        }
                     } else {
                         quarto2(palavra);
                     }
@@ -200,17 +234,64 @@ public class RPG_TADS_PI1 {
             } while (!valido);
 
         }
+
         return escolha1;
     }
 
     public static int jogoDaForca01(String N) {
         boolean venceu = false;
-        int jogo;
-        
-        if (venceu == false) {
-            jogo = 0;
+        int jogo = 0;
+
+        String x, palavra = N;
+        int w = 0, z, y = palavra.length();
+        String[] palavra03 = new String[y];
+        String[] palavra04 = new String[y];
+
+        palavra04[2] = palavra.substring(2, 3);
+        palavra04[8] = palavra.substring(8, 8 + 1);
+        palavra04[7] = palavra.substring(7, 8);
+        palavra04[6] = palavra.substring(6, 7);
+
+        for (int i = 0; i < y; i++) {
+            palavra03[i] = palavra.substring(i, i + 1);
+        }
+
+        for (int k = 0; k < y; k++) {
+            System.out.print("Digite uma letra: ");
+            x = entrada.nextLine();
+            x = x.toUpperCase();
+            if (palavra.contains(x)) {
+                z = palavra.indexOf(x);
+                palavra04[z] = x;
+                for (int j = 0; j < y; j++) {
+                    if (palavra04[j] == null) {
+                        palavra04[j] = "-";
+                    }
+                    System.out.print(palavra04[j] + " ");
+                }
+                if (Arrays.equals(palavra03, palavra04)) {
+                    venceu = true;
+                    System.out.println("");
+                    System.out.println("Você tenta a última letra - correta - e ouve o barulho da porta abrindo.");
+                    System.out.println("");
+                    break;
+                }
+                System.out.println("");
+            } else {
+                System.out.println("-1 chance");
+                w = w + 1;
+                if (w == 3) {
+                    System.out.println("Você tenta a última letra - errada - a ouve uma risada vindo do corredor. A porta continua fechada. ");
+                    venceu = false;
+                    break;
+                }
+            }
+
+        }
+        if (venceu = true) {
+            jogo = 1;
         } else {
-            jogo = 10;
+            jogo = 0;
         }
         return jogo;
     }
