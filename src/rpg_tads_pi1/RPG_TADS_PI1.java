@@ -121,6 +121,7 @@ public class RPG_TADS_PI1 {
                 + "\n> 2 - tentar a segunda porta."
                 + "\n> 3 - ir em direção a escada.");
         String escolha = entrada.nextLine();
+        System.out.println("");
 
         switch (escolha) {
 
@@ -141,9 +142,8 @@ public class RPG_TADS_PI1 {
         return quarto;
     }
 
-    public static int quarto3(int N) {
-        String escolha1, palavra = "";
-        int escolha2 = 0, escolha3 = 0;
+    public static String quarto3(int N) {
+        String escolha1, escolha2 = "", palavra = "", escolha3 = "";
         if (N == 1) {
             System.out.println("A porta está trancada,  você consegue ver uma luz - "
                     + "talvez branca? ou azul? - pela fresta."
@@ -151,61 +151,66 @@ public class RPG_TADS_PI1 {
                     + "\n> 2 - Voltar ao corredor.");
             escolha1 = entrada.nextLine();
             System.out.println("");
-            switch (escolha1) {
-                case "1":
-                    System.out.println("Você vê parte da sala, apenas um quarto branco."
-                            + "\n> 1 - Tentar a segunda porta."
-                            + "\n> 2 - Voltar ao corredor.");
-                    escolha2 = entrada.nextInt();
-                    System.out.println("");
-                    if (escolha2 == 1) {
-                        escolha3 = 1;
-                    } else {
-                        escolha3 = 0;
-                        quarto2(palavra);
-                    }
-                    break;
-                case "2":
+            if (escolha1.contains("1")) {
+                System.out.println("Você vê parte da sala, apenas um quarto branco."
+                        + "\n> 1 - Tentar a segunda porta."
+                        + "\n> 2 - Voltar ao corredor.");
+                escolha2 = entrada.nextLine();
+                System.out.println("");
+                if (escolha2.contains("1")) {
+                    escolha3 = "porta2";
+                } else if (escolha2.contains("2")) {
                     quarto2(palavra);
-                    break;
-                default:
-                    System.out.println("opção inválida");
-                    break;
+                }
+
+                return escolha3;
             }
+        }
+        if (N == 2) {
+            return escolha3;
         }
         return escolha3;
     }
 
-    public static int quarto4(int N) {
+    public static String quarto4(int N) {
         int escolha2, escolha = 0;
-        String palavra;
-        switch (N) {
-            case 1:
-                System.out.println("A sala está aberta, você vê ma sala ampla, porém vazia."
+        String palavra = "", escolha1="";
+        boolean valido = false;
+
+        if (N == 2) {
+            do {
+                System.out.println("A sala está aberta, você vê uma sala ampla, porém vazia."
                         + "\nA sua direita as janelas estão vedadas com tabuas de madeira apenas a luz fraca de fora ilumina o lugar."
                         + "\nNa parede a esquerda algumas letras como se formassem palavras, uma lata de tinta aberta em frente."
                         + "\n> 1 - Jogar."
                         + "\n> 2 - Voltar ao corredor.");
-                escolha2 = entrada.nextInt();
+                escolha1 = entrada.nextLine();
                 System.out.println("");
-                if (escolha2 == 1) {
-                    palavra = "ARQUITETA";
-                    jogoDaForca01(palavra);
+                if (escolha1.equals("1") || escolha1.equals("2")) {
+                    if (escolha1.contains("1")) {
+                        palavra = "ARQUITETA";
+                        jogoDaForca01(palavra);
+                    } else {
+                        quarto2(palavra);
+                    }
+                    valido = true;
+                } else {
+                    System.out.println("Opção invalida");
                 }
-            case 2:
-                System.out.println("A porta está aberta, você vê uma sala ampla, porém vazia,"
-                        + "as janelas estão vedadas com tábuas de madeira, apenas a luz fraca de fora ilumina o lugar.");
+            } while (!valido);
+
         }
-        return escolha;
+        return escolha1;
     }
 
     public static int jogoDaForca01(String N) {
         boolean venceu = false;
         int jogo;
+        
         if (venceu == false) {
-            jogo = 1;
-        } else {
             jogo = 0;
+        } else {
+            jogo = 10;
         }
         return jogo;
     }
