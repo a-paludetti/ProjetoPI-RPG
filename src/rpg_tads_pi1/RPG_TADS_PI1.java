@@ -161,21 +161,35 @@ public class RPG_TADS_PI1 {
                 if (escolha2.contains("1")) {
                     quarto4(2);
                 } else {
-                    quarto2(palavra);
+                    quarto2(escolha3);
                 }
                 return escolha3;
             } else {
-                quarto2(palavra);
+                quarto2(escolha3);
             }
         }
         if (N == 2) {
-            System.out.println("");
-            System.out.println("Ao abrir a porta você se depara com um quarto vazio,"
-                    + "\n uma luz fraca illumina as paredes brancas, você não vê nenhuma porta."
+            System.out.println("Ao abrir a porta você se depara com um quarto vazio;"
+                    + "\nUma luz fraca illumina as paredes brancas, você não vê nenhuma porta."
                     + "\n> 1 - Examinar o quarto."
                     + "\n> 2 - Voltar ao corredor.");
             escolha1 = entrada.nextLine();
             System.out.println("");
+            if(escolha1.equals("1")){
+                System.out.println("Ao chegar mais perto você vê que as paredes são cinzas com respingos de tinta"
+                        + "\nNa sua frente a parede parece suja com respingos pretos e cinzas, na sua direita, onde estava a fechadura, ainda mais respingos."
+                        + "\nA mulher das suas memórias, a tinta, você começa a sentir um senso de Dejà-vu..."
+                        + "\n> 1 - Jogar a tinta no chão."
+                        + "\n> 2 - Jodas a tinta na parede."
+                        + "\n> 3 - Voltar ao corredor.");
+                escolha2 = entrada.nextLine();
+                System.out.println("");
+                if (escolha2.contains("1") || escolha2.contains("2")){
+                    System.out.println("Assim que a tinta cai, ");
+                } else {
+                    quarto2(palavra);
+                }
+            }
 
             return escolha3;
         }
