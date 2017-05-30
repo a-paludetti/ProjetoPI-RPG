@@ -6,6 +6,7 @@
 package rpg_tads_pi1;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -113,7 +114,8 @@ public class RPG_TADS_PI1 {
     }
 
     public static int quarto2(String N) {
-        int quarto = 0;
+        int HP, quarto = 0;
+        String HP1;
         System.out.println("Na sua frente se extende um corredor escuro,"
                 + " você consegue ver 3 portas a sua esquerda, uma claramente destruída."
                 + "\nAs outras duas estão intáctas; ao final uma escada,"
@@ -136,6 +138,7 @@ public class RPG_TADS_PI1 {
                 break;
             case "3":
                 quarto = 3;
+                quarto5(quarto);
             default:
                 System.out.println("Opção inválida");
                 break;
@@ -144,7 +147,7 @@ public class RPG_TADS_PI1 {
     }
 
     public static String quarto3(int N) {
-        String escolha1, escolha2 = "", palavra = "", escolha3 = "";
+        String escolha1, escolha2 = "", palavra = "", escolha3 = "", escolha4 = "";
         if (N == 1) {
             System.out.println("A porta está trancada,  você consegue ver uma luz - "
                     + "talvez branca? ou azul? - pela fresta."
@@ -161,11 +164,11 @@ public class RPG_TADS_PI1 {
                 if (escolha2.contains("1")) {
                     quarto4(2);
                 } else {
-                    quarto2(escolha3);
+                    quarto2(escolha4);
                 }
-                return escolha3;
+                return escolha4;
             } else {
-                quarto2(escolha3);
+                quarto2(escolha4);
             }
         }
         if (N == 2) {
@@ -175,7 +178,7 @@ public class RPG_TADS_PI1 {
                     + "\n> 2 - Voltar ao corredor.");
             escolha1 = entrada.nextLine();
             System.out.println("");
-            if(escolha1.equals("1")){
+            if (escolha1.equals("1")) {
                 System.out.println("Ao chegar mais perto você vê que as paredes são cinzas com respingos de tinta"
                         + "\nNa sua frente a parede parece suja com respingos pretos e cinzas, na sua direita, onde estava a fechadura, ainda mais respingos."
                         + "\nA mulher das suas memórias, a tinta, você começa a sentir um senso de Dejà-vu..."
@@ -184,16 +187,32 @@ public class RPG_TADS_PI1 {
                         + "\n> 3 - Voltar ao corredor.");
                 escolha2 = entrada.nextLine();
                 System.out.println("");
-                if (escolha2.contains("1") || escolha2.contains("2")){
-                    System.out.println("Assim que a tinta cai, ");
+                if (escolha2.contains("1") || escolha2.contains("2")) {
+                    System.out.println("((memória 01 - museu + tea tray.");
+                    System.out.println("((tomar chá?"
+                            + "\n> 1 - SIM"
+                            + "\n> 2 - NÃO))");
+                    escolha3 = entrada.nextLine();
+                    System.out.println("");
+                    if (escolha3.contains("1")) {
+                        System.out.println("HP + 10");
+                        escolha4 = "10";
+                        HP(escolha4);
+                        System.out.println("");
+                        quarto2(escolha4);
+                    } else {
+                        System.out.println("((sai do quarto))");
+                        escolha4 = "";
+                        quarto2(escolha4);
+                    }
                 } else {
                     quarto2(palavra);
                 }
             }
 
-            return escolha3;
+            return escolha4;
         }
-        return escolha3;
+        return escolha4;
     }
 
     public static String quarto4(int N) {
@@ -252,6 +271,56 @@ public class RPG_TADS_PI1 {
         return escolha1;
     }
 
+    public static String quarto5(int N) {
+        String status = "";
+        System.out.println("((sem batalha - escada indo para baixo))");
+        System.out.println("((desci~~ida talvez uma sombra no fundo???");
+        System.out.println("((algum modo do jogador desenhar uma fechadura no papel e colocar na porta))");
+        status = entrada.nextLine();
+        System.out.println("((porta fecha/quebra/whatever e jogador entra no piso 2 - quarto 6.))");
+        return status;
+    }
+
+    public static int quarto6(String N) {
+        int HP, quarto = 0;
+        String HP1;
+        System.out.println("Na sua frente se extende um corredor escuro,"
+                + " você consegue ver 3 portas a sua esquerda, uma claramente destruída."
+                + "\nAs outras duas estão intáctas; ao final uma escada,"
+                + " você consegue notar um vulto estranho aguardando em frente."
+                + "\n> 1 - tentar a primeira porta."
+                + "\n> 2 - tentar a segunda porta."
+                + "\n> 3 - ir em direção a escada.");
+        String escolha = entrada.nextLine();
+        System.out.println("");
+
+        switch (escolha) {
+
+            case "1":
+                quarto = 1;
+                quarto3(quarto);
+                break;
+            case "2":
+                quarto = 2;
+                quarto4(quarto);
+                break;
+            case "3":
+                quarto = 3;
+                quarto5(quarto);
+            default:
+                System.out.println("Opção inválida");
+                break;
+        }
+        return quarto;
+    }
+
+    public static int HP(String N) {
+        int HP = 100, HP1;
+        HP1 = Integer.parseInt(N);
+        HP = HP + HP1;
+        return HP;
+    }
+
     public static int jogoDaForca01(String N) {
         boolean venceu = false;
         int jogo = 0;
@@ -286,6 +355,7 @@ public class RPG_TADS_PI1 {
                 if (Arrays.equals(palavra03, palavra04)) {
                     venceu = true;
                     System.out.println("");
+                    System.out.println("");
                     System.out.println("Você tenta a última letra - correta - e ouve o barulho da porta abrindo.");
                     System.out.println("");
                     break;
@@ -310,6 +380,15 @@ public class RPG_TADS_PI1 {
         return jogo;
     }
 
+    public static int monsto(int x) {
+        Random hpm = new Random();
+        int monster = 0;
+        if (x == 1) {
+            monster = hpm.nextInt(5);
+        }
+
+    }
+
     public static void main(String[] args) {
         // TODO code application logic here
         int x, N1;
@@ -317,6 +396,7 @@ public class RPG_TADS_PI1 {
         N = quarto1();
         N1 = quarto2(N);
         quarto3(N1);
+        quarto6;
 
     }
 
