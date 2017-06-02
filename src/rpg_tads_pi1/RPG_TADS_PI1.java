@@ -38,7 +38,7 @@ public class RPG_TADS_PI1 {
         // TODO code application logic here
         Piso1 p1 = new Piso1();
 
-        ArrayList<String> itens = new ArrayList<>();
+        ArrayList<String> itens1 = new ArrayList<>();
 
         String dado1 = p1.quarto1();
         int dado2 = p1.quarto2(dado1);

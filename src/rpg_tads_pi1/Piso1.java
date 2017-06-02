@@ -6,6 +6,7 @@
 package rpg_tads_pi1;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 import static rpg_tads_pi1.RPG_TADS_PI1.HP;
 import static rpg_tads_pi1.RPG_TADS_PI1.entrada;
 
@@ -16,7 +17,7 @@ import static rpg_tads_pi1.RPG_TADS_PI1.entrada;
 public class Piso1 {
 
     public String quarto1() {
-        String escolha1, escolha2, escolha3, escolha4 = "";
+        String escolha1, escolha2, escolha3 = "", escolha4 = "";
         int i = 0;
 
         System.out.println("Você acorda em um quarto escuro, uma lâmpada fraca e amarela iluminando o lugar que você deita."
@@ -26,19 +27,17 @@ public class Piso1 {
         System.out.println("");
         if (escolha1.contains("1")) {
             System.out.println("Na sua frente tem uma mesa, apenas papel e caneta por cima. Na sua direita uma porta."
-                    + "\n> 1 - tentar a porta"
+                    + "\n> 1 - abrig a porta"
                     + "\n> 2 - pegar papel e caneta.");
             escolha2 = entrada.nextLine();
             System.out.println("");
             if (escolha2.contains("1")) {
                 System.out.println("A porta está trancada."
-                        + "\n> 1 - tentar a porta novamente."
+                        + "\n> 1 - tentar abrir a porta novamente."
                         + "\n> 2 - pegar papel e caneta.");
-                escolha3 = entrada.nextLine();
-                System.out.println("");
                 while (escolha3.contains("1")) {
                     System.out.println("A porta está trancada."
-                            + "\n> 1 - tentar a porta novamente."
+                            + "\n> 1 - tentar abrir a porta novamente."
                             + "\n> 2 - pegar papel e caneta.");
                     escolha3 = entrada.nextLine();
                     System.out.println("");
@@ -46,13 +45,13 @@ public class Piso1 {
                 }
                 if (escolha3.contains("2")) {
                     System.out.println("Você pega o papel e a caneta, embaixo tem uma chave, provavelmente da porta."
-                            + "\n> 1 - tentar a porta");
+                            + "\n> 1 - abrir a porta");
                     escolha4 = entrada.nextLine();
                     System.out.println("");
                 }
             } else {
                 System.out.println("Você pega o papel e a caneta, embaixo tem uma chave, provavelmente da porta."
-                        + "\n> 1 - tentar a porta");
+                        + "\n> 1 - abrir a porta");
                 escolha4 = entrada.nextLine();
                 System.out.println("");
             }
@@ -85,13 +84,13 @@ public class Piso1 {
                 }
             } else {
                 System.out.println("Na sua frente tem uma mesa, apenas papel e caneta por cima. Na sua direita uma porta."
-                        + "\n> 1 - tentar a porta"
+                        + "\n> 1 - abrir a porta"
                         + "\n> 2 - pegar papel e caneta.");
                 escolha3 = entrada.nextLine();
                 System.out.println("");
                 while (escolha3.contains("1")) {
                     System.out.println("A porta está trancada."
-                            + "\n> 1 - tentar a porta novamente."
+                            + "\n> 1 - tentar abrir a porta novamente."
                             + "\n> 2 - pegar papel e caneta.");
                     escolha3 = entrada.nextLine();
                     System.out.println("");
@@ -99,7 +98,7 @@ public class Piso1 {
                 }
                 if (escolha3.contains("2")) {
                     System.out.println("Você pega o papel e a caneta, embaixo tem uma chave, provavelmente da porta."
-                            + "\n> 1 - tentar a porta");
+                            + "\n> 1 - abrir a porta");
                     escolha4 = entrada.nextLine();
                     System.out.println("");
                 }
@@ -271,16 +270,24 @@ public class Piso1 {
     }
 
     public String quarto5(int N) {
-        String escolha01, escolha3 = "", escolha4 = "", status = "";
+        String escolha01, escolha3 = "", escolha4 = "", escolha2 = "";
         int HP;
         boolean passar = false;
         do {
-            System.out.println("((sem batalha - escada indo para baixo))");
-            System.out.println("((desci~~ida talvez uma sombra no fundo???");
-            System.out.println("((algum modo do jogador desenhar uma fechadura no papel e colocar na porta))");
+            System.out.println("Quando você se aproxima da escada vê que a figura, na verdade, não passa de uma mancha escura na parede."
+                    + "\nVocê se aproxima da escada e vê uma porta ao fundo."
+                    + "\n> 1 - Descer a escada."
+                    + "\n> 2 - Voltar ao corredor.");
             escolha01 = entrada.nextLine();
+            System.out.println("");
             if (escolha01.contains("1")) {
-                System.out.println("((porta abre + tea tray.))");
+                System.out.println("A porta ao final esta trancada, não há fechadura na porta porém você vê que parte da porta esta descolorida, do tamanho do papel que você tem."
+                        + "\nAo colocar o papel contra a porta uma memória vem a sua mente...");
+                System.out.println("");
+                System.out.println("Você esta em um museu, uma visita durante as férias, uma das obras te chama a atenção."
+                        + "\nCom o titulo de 'O Labirinto' a pintura é apenas o desenho do buraco de uma fechadura, não é possível ver nada no vazio negro do buraco."
+                        + "\n ");
+                
                 System.out.println("((tomar chá?"
                         + "\n> 1 - SIM"
                         + "\n> 2 - NÃO))");
@@ -298,6 +305,8 @@ public class Piso1 {
                     escolha4 = "";
                     quarto2(escolha4);
                 }
+            } else {
+                quarto2(escolha4);
             }
 
         } while (passar = false);
