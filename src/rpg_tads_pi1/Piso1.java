@@ -184,10 +184,18 @@ public class Piso1 {
                 escolha2 = entrada.nextLine();
                 System.out.println("");
                 if (escolha2.contains("1") || escolha2.contains("2")) {
-                    System.out.println("((memória 01 - museu + tea tray.");
-                    System.out.println("((tomar chá?"
+                    System.out.println("Comforme a tinta se espalha, você lembra de um ocorrido, parece que aconteceu semanas antes, porém é uma das últimas coisas que você "
+                            + "\nse lembra antes de acordar no quarto escuro...");
+                    System.out.println("");
+                    System.out.println("Uma senhora esta caída na rua, um vulto correndo da sena. Ao se aproximar você vê que a mulher não esta machucada, apenas assustada."
+                            + "\nAo oferecer ajuda ela apenas pede para ir para casa."
+                            + "\nVocê concorda");
+                    System.out.println("");
+                    System.out.println("Ao voltar a si você ouve um barulho de louça caindo, ao olhar em volta nota um jogo de chá, simples, marrom escuro,"
+                            + "\ne um pedaço de bolo de fucá do lado."
+                            + "\nTomar o chá?"
                             + "\n> 1 - SIM"
-                            + "\n> 2 - NÃO))");
+                            + "\n> 2 - NÃO");
                     escolha3 = entrada.nextLine();
                     System.out.println("");
                     if (escolha3.contains("1")) {
@@ -197,8 +205,6 @@ public class Piso1 {
                         System.out.println("");
                         quarto2(escolha4);
                     } else {
-                        System.out.println("((sai do quarto))");
-                        escolha4 = "";
                         quarto2(escolha4);
                     }
                 } else {
@@ -285,24 +291,33 @@ public class Piso1 {
                         + "\nAo colocar o papel contra a porta uma memória vem a sua mente...");
                 System.out.println("");
                 System.out.println("Você esta em um museu, uma visita durante as férias, uma das obras te chama a atenção."
-                        + "\nCom o titulo de 'O Labirinto' a pintura é apenas o desenho do buraco de uma fechadura, não é possível ver nada no vazio negro do buraco."
-                        + "\n ");
-                
-                System.out.println("((tomar chá?"
-                        + "\n> 1 - SIM"
-                        + "\n> 2 - NÃO))");
+                        + "\nCom o titulo de 'O Labirinto' a pintura é apenas o desenho do buraco de uma fechadura, não é possível ver nada do vazio do centro da pintura."
+                        + "\nEmbaixo uma breve descrição da pintora, Joan Leclaire, desaparecida em 1912 durante a Primeira Guerra, a única obra feita por ela.");
+                System.out.println("");
+                System.out.println("Ao se lembrar do occorrido você se lembra da caneta, no papel você nota o traçado ce ume fechadura."
+                        + "\n> 1 - Tentar abrir a porta."
+                        + "\n> 2 - Voltar ao corredor");
                 escolha3 = entrada.nextLine();
                 System.out.println("");
                 passar = true;
                 if (escolha3.contains("1")) {
-                    System.out.println("HP + 10");
-                    escolha4 = "10";
-                    HP(escolha4);
-                    System.out.println("");
-                    quarto2(escolha4);
+                    System.out.println("Você preenche o traçado, desenhando uma fechadura no papel, ao terminar você ouve um 'click' da porta se abrindo."
+                            + "\nAo passar pela porta você nota um jogo de chá, branquinho, um pedaço de bolo de limão do lado."
+                            + "\nTomar o chá?"
+                            + "\n> 1 - SIM"
+                            + "\n> 2 - NÃO");
+                    escolha2 = entrada.nextLine();
+                    if (escolha2.contains("1")) {
+                        System.out.println("HP + 10");
+                        escolha4 = "10";
+                        HP(escolha4);
+                        System.out.println("");
+                        quarto2(escolha4);
+                    } else{
+                        quarto2(escolha4);
+                    }
+
                 } else {
-                    System.out.println("((sai do quarto))");
-                    escolha4 = "";
                     quarto2(escolha4);
                 }
             } else {
@@ -311,7 +326,7 @@ public class Piso1 {
 
         } while (passar = false);
 
-        return status;
+        return escolha4;
     }
 
     public int jogoDaForca01(String N) {
