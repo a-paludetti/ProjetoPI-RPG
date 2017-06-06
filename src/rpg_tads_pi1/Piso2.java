@@ -58,7 +58,7 @@ public class Piso2 {
             escolha2 = entrada.nextLine();
             System.out.println("");
             if (escolha2.contains("1")) {
-                quarto6(2);
+                quarto6(escolha4);
             } else {
                 quarto6(escolha4);
             }

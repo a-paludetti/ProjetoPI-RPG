@@ -6,6 +6,7 @@
 package rpg_tads_pi1;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -14,55 +15,184 @@ import java.util.Scanner;
  */
 public class jogodavelha {
 
-    public static void main(String[] args) {
-        Scanner NN = new Scanner(System.in);
-        boolean venceu = false;
+    public  String[][] jogodavelha = new String[3][3];
 
-        String x, palavra = "ARQUITETA";
-        int w = 0, z, y = palavra.length();
-        String[] palavra03 = new String[y];
-        String[] palavra04 = new String[y];
+    public  boolean jogadaMaquina() {
 
-        palavra04[2] = palavra.substring(2, 3);
-        palavra04[8] = palavra.substring(8, 8 + 1);
-        palavra04[7] = palavra.substring(7, 8);
-        palavra04[6] = palavra.substring(6, 7);
+        //GERAR COMANDOS PARA TESTAR SE A POSIÇÃO DO RANDOM É VÁLIDA, SE SIM, A POSIÇÃO SERÁ ESCOLHIDA!
+        Random jogador2 = new Random();
+        boolean validacao = false;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (jogodavelha[i][j] == null) {
+                    jogodavelha[i][j] = "-";
+                }
 
-        for (int i = 0; i < y; i++) {
-            palavra03[i] = palavra.substring(i, i + 1);
+            }
+
         }
 
-        for (int k = 0; k < y; k++) {
-            System.out.print("Digite uma letra: ");
-            x = NN.nextLine();
-            x = x.toUpperCase();
-            if (palavra.contains(x)) {
-                z = palavra.indexOf(x);
-                palavra04[z] = x;
-                for (int j = 0; j < y; j++) {
-                    if (palavra04[j] == null) {
-                        palavra04[j] = "-";
-                    }
-                    System.out.print(palavra04[j] + " ");
+        int sorteio = jogador2.nextInt(8) + 1;
+
+        switch (sorteio) {
+            case 1:
+                if (jogodavelha[0][0].equals("-")) {
+                    jogodavelha[0][0] = "o";
+                    validacao = true;
+                } else {
+                    validacao = false;
                 }
-                if (Arrays.equals(palavra03, palavra04)) {
-                    venceu = true;
-                    System.out.println("");
-                    System.out.println("Você tenta a última letra - correta - e ouve o barulho da porta abrindo.");
-                    System.out.println("");
-                    break;
+                break;
+            case 2:
+                if (jogodavelha[0][1].equals("-")) {
+                    jogodavelha[0][1] = "o";
+                    validacao = true;
                 }
-                System.out.println("");
-            } else {
-                System.out.println("-1 chance");
-                w = w + 1;
-                if (w == 3) {
-                    System.out.println("Você tenta a última letra - errada - a ouve uma risada vindo do corredor. A porta continua fechada. ");
-                    venceu = false;
-                    break;
+                break;
+            case 3:
+                if (jogodavelha[0][2].equals("-")) {
+                    jogodavelha[0][2] = "o";
+                    validacao = true;
+                }
+                break;
+            case 4:
+                if (jogodavelha[1][0].equals("-")) {
+                    jogodavelha[1][0] = "o";
+                    validacao = true;
+                }
+                break;
+            case 5:
+                if (jogodavelha[1][1].equals("-")) {
+                    jogodavelha[1][1] = "o";
+                    validacao = true;
+                }
+                break;
+            case 6:
+                if (jogodavelha[1][2].equals("-")) {
+                    jogodavelha[1][2] = "o";
+                    validacao = true;
+                }
+                break;
+            case 7:
+                if (jogodavelha[2][0].equals("-")) {
+                    jogodavelha[2][0] = "o";
+                    validacao = true;
+                }
+                break;
+            case 8:
+                if (jogodavelha[2][1].equals("-")) {
+                    jogodavelha[2][1] = "o";
+                    validacao = true;
+                }
+                break;
+            case 9:
+                if (jogodavelha[2][2].equals("-")) {
+                    jogodavelha[2][2] = "o";
+                    validacao = true;
+                }
+                break;
+
+        }
+        return true;
+    }
+
+    public  void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+        boolean validacao = true;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (jogodavelha[i][j] == null) {
+                    jogodavelha[i][j] = "-";
                 }
             }
 
         }
-    }
+
+        //LAÇO PARA PEDIR A POSIÇÃO PARA O USUÁRIO        
+        System.out.println("Você é o X!");
+        int p = 0;
+
+        while (p < 9) {
+            System.out.println("Informe a posição desejada de 1 a 9: ");
+            String posicao = leitor.next();
+
+            //DECISÃO DA IMPRESSÃO CONFORME A POSIÇÃO
+            switch (posicao) {
+                case "1":
+                    if (jogodavelha[0][0].equals("-")) {
+                        jogodavelha[0][0] = "x";
+                        validacao = true;
+                    }
+                    break;
+                case "2":
+                    if (jogodavelha[0][1].equals("-")) {
+                        jogodavelha[0][1] = "x";
+                        validacao = true;
+                    }
+                    break;
+                case "3":
+                    if (jogodavelha[0][2].equals("-")) {
+                        jogodavelha[0][2] = "x";
+                        validacao = true;
+                    }
+                    break;
+                case "4":
+                    if (jogodavelha[1][0].equals("-")) {
+                        jogodavelha[1][0] = "x";
+                        validacao = true;
+                    }
+                    break;
+                case "5":
+                    if (jogodavelha[1][1].equals("-")) {
+                        jogodavelha[1][1] = "x";
+                        validacao = true;
+                    }
+                    break;
+                case "6":
+                    if (jogodavelha[1][2].equals("-")) {
+                        jogodavelha[1][2] = "x";
+                        validacao = true;
+                    }
+                    break;
+                case "7":
+                    if (jogodavelha[2][0].equals("-")) {
+                        jogodavelha[2][0] = "x";
+                        validacao = true;
+                    }
+                    break;
+                case "8":
+                    if (jogodavelha[2][1].equals("-")) {
+                        jogodavelha[2][1] = "x";
+                        validacao = true;
+                    }
+                    break;
+                case "9":
+                    if (jogodavelha[2][2].equals("-")) {
+                        jogodavelha[2][2] = "x";
+                        validacao = true;
+                    }
+                    break;
+
+            }
+            p = p + 1;
+            //COMANDOS DO TABULEIRO
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (jogodavelha[i][j] == null) {
+                        jogodavelha[i][j] = "-";
+                    }
+
+                    System.out.print(jogodavelha[i][j] + " ");
+
+                }
+                System.out.println("");
+
+            }
+
+            jogadaMaquina();
+            validacao = false;
+
+        }
+    
+}
 }
