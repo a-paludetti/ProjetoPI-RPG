@@ -18,6 +18,7 @@ import rpg_tads_pi1.jogodavelha;
 public class RPG_TADS_PI1 {
 
     static Scanner entrada = new Scanner(System.in);
+    static jogodavelha JVelha = new jogodavelha();
 
     public static String quarto1() {
         String escolha1, escolha2, escolha3 = "", escolha4 = "";
@@ -327,6 +328,7 @@ public class RPG_TADS_PI1 {
                     } else {
                         System.out.println("Você passa pela porta com um certo receio, ao atravessar ouve um barulho atrás de você, a porta esta trancada, o buraco da fechadura desapareceu.");
                         System.out.println("");
+                        escolha4 = "end";
                         quarto2(escolha4);
                     }
 
@@ -367,6 +369,7 @@ public class RPG_TADS_PI1 {
 
     public static String quarto7(int N) {
         String escolha1, escolha2 = "", palavra = "", escolha3 = "", escolha4 = "";
+        int jogo = 0;
 
         System.out.println("Você entra em um quarto vazio, a luz branca e as paredes vazias dão a impressão de um quarto de hospital, o cheiro de antiséptico é fraco porém permeia o ar."
                 + "\nNo fundo uma outra porta, você vê um tabuleiro 3x3 com um jogo da velha."
@@ -375,21 +378,31 @@ public class RPG_TADS_PI1 {
         escolha1 = entrada.nextLine();
         System.out.println("");
         if (escolha1.contains("1")) {
-            System.out.println("Escolha 1");
-            escolha2 = entrada.nextLine();
-            System.out.println("outra escolha");
-            if (escolha2.contains("1")) {
-                System.out.println("outra escolha (xp + 10??)");
-                quarto6(escolha4);
+            palavra = "DESAPARECEU";
+            jogo = jogoDaForca01(palavra);
+            if (jogo == 1) {
+                System.out.println("A porta se abre com um rangido, umma sala pequena, como se fosse um armário.");
+                System.out.println("");
+                quarto8(0);
             } else {
-                System.out.println("volta para o corredor");
-                quarto6(escolha4);
+                System.out.println("Jogar de Novo?"
+                        + "\n> 1 - SIM."
+                        + "\n> 2 - NÃO");
+                escolha2 = entrada.nextLine();
+                if (escolha2.equals("1")) {
+                    palavra = "DESAPARECEU";
+                    jogo = jogoDaForca01(palavra);
+                    if (jogo == 1) {
+                        quarto8(0);
+                    }
+                } else {
+                    quarto6(palavra);
+                }
             }
-            return escolha4;
-        } else {
             System.out.println("volta para o corredor");
             quarto6(escolha4);
         }
+        quarto6(escolha4);
 
         return escolha4;
     }
@@ -397,57 +410,74 @@ public class RPG_TADS_PI1 {
     public static String quarto8(int N) {
         String escolha1, escolha2 = "", palavra = "", escolha3 = "", escolha4 = "";
 
-        System.out.println("Quarto 8  escolha 1 ");
+        System.out.println("O quarto é pequeno e escuro, você vê um traçado na sua frente e uma corrente velha, antiga, de cobre  na sua frente."
+                + "\n> 1 - acender a luz."
+                + "\n> 2 - voltar ao corredor.");
         escolha1 = entrada.nextLine();
         System.out.println("");
         if (escolha1.contains("1")) {
-            System.out.println("Escolhla 2");
+            System.out.println("Ao acender a luz você vê um espelho, uma forma negra passa atrás de você, porém você não conseque se mecher...");
+            System.out.println("");
+            System.out.println("No espelho você vê a senhora que ajudou anteriormente, vocês estão sentados juntos em uma sala pequena, comfortável."
+                    + "\nEla te oferece chá e biscoitos, você se vê tomando, antes de a visão desaparecer, a última cena é você caindo para frente e alguém te segurando."
+                    + "\n> 1 - voltar ao corredor.");
             escolha2 = entrada.nextLine();
             System.out.println("");
-            if (escolha2.contains("1")) {
-                System.out.println("volta para o quarto");
-                quarto4(2);
-            } else {
-                System.out.println("volta para o quarto");
-
-                quarto6(escolha4);
-            }
-            System.out.println("volta para o quarto");
-
-            return escolha4;
+            quarto6(escolha4);
         } else {
-            System.out.println("volta para o quarto");
-
             quarto6(escolha4);
         }
-
         return escolha4;
     }
 
     public static String quarto9(int N) {
         String escolha1, escolha2 = "", palavra = "", escolha3 = "", escolha4 = "";
 
-        System.out.println("((MEEEEEEHH!!))");
+        System.out.println("Quando você toca na porta ela se abre com um click, na penumbra você vê um sofá e uma mesa, ao fundo uma porta."
+                + "\n> 1 - examinar a mesa"
+                + "\n> 2 - voltar ao corredor"
+                + "\n> 3 - abrir a porta");
         escolha1 = entrada.nextLine();
         System.out.println("");
         if (escolha1.contains("1")) {
-            System.out.println("Quarto 9, primeira escolha");
-            escolha2 = entrada.nextLine();
+
+            System.out.println("Na mesa há um jogo de chá, você percebe que esta na temperatura ideal para degustar, junto com uma chave."
+                    + "\n> 1 - tomar o chá"
+                    + "\n> 2 - pegar a chave");
+            escolha3 = entrada.nextLine();
             System.out.println("");
-            if (escolha2.contains("1")) {
-                System.out.println("volta para o quarto");
-                quarto4(2);
+            if (escolha3.contains("1")) {
+                System.out.println("Você ouve uma risada de deboche antes de perder a consciencia"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n");
+                quarto1();
             } else {
-                System.out.println("volta para o quarto");
-
-                quarto6(escolha4);
+                System.out.println("A chave parece estar quente na sua mão, você ouve um barulho atrás de você, algo se aproximando rapidamente da sua posição."
+                        + "\n> 1 - sair da casa");
+                escolha4 = entrada.nextLine();
+                palavra = "1";
+                porta(palavra);
             }
-            return escolha4;
-        } else {
+        } else if (escolha1.contains("2")) {
             quarto6(escolha4);
+        } else {
+            palavra = "2";
+            porta(palavra);
         }
-
         return escolha4;
+    }
+
+    public static void porta(String N) {
+        if (N.contains("1")) {
+            System.out.println("Ao sair pela porta você reaparece no museu, a pintura na sua frente esta rasgada.");
+        } else if (N.contains("2")) {
+            System.out.println("A porta esta trancada.");
+        }
     }
 
     public static int jogoDaForca01(String N) {
@@ -521,45 +551,13 @@ public class RPG_TADS_PI1 {
         return HP;
     }
 
-    public static int monsto(int x) {
-        Random hpm = new Random();
-        int monster = 0;
-        if (x == 1) {
-            monster = hpm.nextInt(5);
-        }
-        return monster;
-    }
-
     public static void main(String[] args) {
         // TODO code application logic here
         String dado1 = "", dado4 = " ";
         int dado2 = 0, dado3 = 0;
+
         dado1 = quarto1();
         dado2 = quarto2(dado1);
-        System.out.println(HP(dado4));
         dado3 = quarto6(dado4);
-    }
-
-    static void game() {
-        Piso1 p1 = new Piso1();
-
-        ArrayList<String> itens1 = new ArrayList<>();
-
-        String dado1 = p1.quarto1();
-
-        try {
-            startGame(dado1);
-        } catch (Exception e) {
-            System.out.println("rpg_tads_pi1.RPG_TADS_PI1.main() " + e);
-        }
-    }
-
-    private static void startGame(String character) {
-        Piso2 p2 = new Piso2();
-        Piso3 p3 = new Piso3();
-        Piso1 p1 = new Piso1();
-
-        int dado2 = p1.quarto2(character);
-        int dado3 = p2.quarto6();
     }
 }
