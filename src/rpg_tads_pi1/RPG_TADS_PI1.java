@@ -36,25 +36,22 @@ public class RPG_TADS_PI1 {
             escolha2 = entrada.nextLine();
             System.out.println("");
             if (escolha2.contains("1")) {
-                System.out.println("A porta está trancada."
-                        + "\n> 1 - tentar abrir a porta novamente."
-                        + "\n> 2 - pegar papel e caneta.");
-                while (escolha3.contains("1")) {
+                while (escolha2.contains("1")) {
                     System.out.println("A porta está trancada."
                             + "\n> 1 - tentar abrir a porta novamente."
                             + "\n> 2 - pegar papel e caneta.");
-                    escolha3 = entrada.nextLine();
+                    escolha2 = entrada.nextLine();
                     System.out.println("");
                     i++;
                 }
                 if (escolha3.contains("2")) {
-                    System.out.println("Você pega o papel e a caneta, embaixo tem uma chave, provavelmente da porta."
+                    System.out.println("Você pega o papel e a caneta, em baixo tem uma chave, provavelmente da porta."
                             + "\n> 1 - abrir a porta");
                     escolha4 = entrada.nextLine();
                     System.out.println("");
                 }
             } else {
-                System.out.println("Você pega o papel e a caneta, embaixo tem uma chave, provavelmente da porta."
+                System.out.println("Você pega o papel e a caneta, em baixo tem uma chave, provavelmente da porta."
                         + "\n> 1 - abrir a porta");
                 escolha4 = entrada.nextLine();
                 System.out.println("");
@@ -378,8 +375,8 @@ public class RPG_TADS_PI1 {
         escolha1 = entrada.nextLine();
         System.out.println("");
         if (escolha1.contains("1")) {
-            palavra = "DESAPARECEU";
-            jogo = jogoDaForca01(palavra);
+            jogo = JVelha.main();
+            System.out.println("");
             if (jogo == 1) {
                 System.out.println("A porta se abre com um rangido, umma sala pequena, como se fosse um armário.");
                 System.out.println("");
@@ -390,8 +387,8 @@ public class RPG_TADS_PI1 {
                         + "\n> 2 - NÃO");
                 escolha2 = entrada.nextLine();
                 if (escolha2.equals("1")) {
-                    palavra = "DESAPARECEU";
-                    jogo = jogoDaForca01(palavra);
+                    jogo = JVelha.main();
+
                     if (jogo == 1) {
                         quarto8(0);
                     }

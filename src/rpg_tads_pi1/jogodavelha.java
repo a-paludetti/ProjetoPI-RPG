@@ -15,9 +15,9 @@ import java.util.Scanner;
  */
 public class jogodavelha {
 
-    public  String[][] jogodavelha = new String[3][3];
+    public String[][] jogodavelha = new String[3][3];
 
-    public  boolean jogadaMaquina() {
+    public boolean jogadaMaquina() {
 
         //GERAR COMANDOS PARA TESTAR SE A POSIÇÃO DO RANDOM É VÁLIDA, SE SIM, A POSIÇÃO SERÁ ESCOLHIDA!
         Random jogador2 = new Random();
@@ -96,9 +96,43 @@ public class jogodavelha {
         return true;
     }
 
-    public  void main(String[] args) {
+    public int checagem() {
+        int x = 0;
+        boolean checagem = false;
+        if (jogodavelha[0][0] == "x" && jogodavelha[0][1] == "x" && jogodavelha[0][2] == "x" || jogodavelha[1][0] == "x" && jogodavelha[1][1] == "x" && jogodavelha[1][2] == "x" || jogodavelha[2][0] == "x" && jogodavelha[2][1] == "x" && jogodavelha[2][2] == "x") {
+            checagem = true;
+            System.out.println("Você ganhou o jogo!");
+        } else if (jogodavelha[0][0] == "o" && jogodavelha[0][1] == "o" && jogodavelha[0][2] == "o" || jogodavelha[1][0] == "o" && jogodavelha[1][1] == "o" && jogodavelha[1][2] == "o" || jogodavelha[2][0] == "o" && jogodavelha[2][1] == "o" && jogodavelha[2][2] == "o") {
+            checagem = true;
+            System.out.println("Você perdeu o jogo!");
+        } else if (jogodavelha[0][0] == "x" && jogodavelha[1][1] == "x" && jogodavelha[2][2] == "x" || jogodavelha[0][2] == "x" && jogodavelha[1][1] == "x" && jogodavelha[2][0] == "x") {
+            checagem = true;
+            System.out.println("Você ganhou o jogo!");
+        } else if (jogodavelha[0][0] == "o" && jogodavelha[1][1] == "o" && jogodavelha[2][2] == "o" || jogodavelha[0][2] == "o" && jogodavelha[1][1] == "o" && jogodavelha[2][0] == "o") {
+            checagem = true;
+            System.out.println("Você perdeu o jogo!");
+        } else if (jogodavelha[0][0] == "x" && jogodavelha[1][0] == "x" && jogodavelha[2][0] == "x" || jogodavelha[0][1] == "x" && jogodavelha[1][1] == "x" && jogodavelha[2][1] == "x" || jogodavelha[0][2] == "x" && jogodavelha[1][2] == "x" && jogodavelha[2][2] == "x") {
+            checagem = true;
+            System.out.println("Você ganhou o jogo!");
+        } else if (jogodavelha[0][0] == "o" && jogodavelha[1][0] == "o" && jogodavelha[2][0] == "o" || jogodavelha[0][1] == "o" && jogodavelha[1][1] == "o" && jogodavelha[2][1] == "o" || jogodavelha[0][2] == "o" && jogodavelha[1][2] == "o" && jogodavelha[2][2] == "o") {
+            checagem = true;
+            System.out.println("Você perdeu o jogo!");
+        }
+        if (checagem == false) {
+            x = 0;
+
+        } else if (checagem == true) {
+            x = 1;
+        }
+
+        return x;
+    }
+
+    public int main() {
         Scanner leitor = new Scanner(System.in);
-        boolean validacao = true;
+        boolean validacao = false;
+        int x = 0;
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (jogodavelha[i][j] == null) {
@@ -190,9 +224,14 @@ public class jogodavelha {
             }
 
             jogadaMaquina();
+            x = checagem();
             validacao = false;
+            if (x == 1) {
+                break;
+            }
 
         }
-    
-}
+        return x;
+    }
+
 }
